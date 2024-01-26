@@ -36,7 +36,9 @@ def main(args):
 
     logger.info(f"Received {len(temperature_entries)} entries")
 
-    parsed_temperatures = [float(x["state"]) for x in temperature_entries]
+    filtered_temperatures = [x for x in temperature_entries if x["state"] != "unavailable"]
+
+    parsed_temperatures = [float(x["state"]) for x in filtered_temperatures]
 
     average_temperature = sum(parsed_temperatures) / len(parsed_temperatures)
 
