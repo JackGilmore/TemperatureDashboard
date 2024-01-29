@@ -52,7 +52,7 @@ def main(args):
     if not os.path.isfile(collection_file_path):
         logger.info("File doesn't already exist. Creating file and writing header")
         # If the file doesn't exist, create it and write the header
-        with open(collection_file_path, mode="w", newline="") as file:
+        with open(collection_file_path, mode="w", newline="\n") as file:
             writer = csv.writer(file)
             header = ["date", "temperature"]            
             writer.writerow(header)
@@ -60,7 +60,7 @@ def main(args):
             writer.writerow(data)
     else:
         # If the file exists, open in append mode and write your data
-        with open(collection_file_path, mode="a", newline="") as file:
+        with open(collection_file_path, mode="a", newline="\n") as file:
             logger.info("Writing to existing file")
             writer = csv.writer(file)
             data = [extract_date, average_temperature]
