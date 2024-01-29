@@ -1,35 +1,43 @@
 name: Data extract
 
 on:
+  # Manual run
   workflow_dispatch:
+  # Run at 2AM UTC every day
+  schedule:
+    - cron: '0 2 * * *'
 
 permissions:
   contents: write
 
 jobs:
   run:
-    # Self-hosted runner with Python 3.9 and pip pre-installed
+    # Self-hosted runner with Git, Python 3.9 and pip pre-installed
     runs-on: self-hosted
+    # Default to run from the script folder
     defaults:
       run:
         working-directory: ./script/
 
     steps:
+    # Checkout the repository
     - name: Checkout
       uses: actions/checkout@v4
       with: 
         # Using a custom PAT with write access to the repository so it will trigger site build
         token: ${{ secrets.REPO_COMMIT_TOKEN }}
+    # Make sure pip is up to date and install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # Run the script to grab the temperature data from the previous day
     - name: Run script
       env: 
         HA_TOKEN: ${{secrets.HA_TOKEN}}
-      run: python ./main.py https://ha.gnet.ovh sensor.office_temperature_sensor_temperature  $HA_TOKEN
+      run: python ./main.py https://ha.gnet.ovh sensor.office_temperature_sensor_temperature $HA_TOKEN
+    # Commit the updated data as the GitHub Actions bot
     - name: Add & Commit
       uses: EndBug/add-and-commit@v9.1.4
       with:
         default_author: github_actions
-  
