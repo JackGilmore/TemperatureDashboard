@@ -14,8 +14,8 @@ import requests
 from datetime import datetime, timedelta
 from logzero import logger
 
-SAVE_PATH = "../site/_data/temperatures.csv"
-
+SAVE_PATH = "../site/_data/"
+SAVE_FILE_NAME="temperatures.csv"
 
 def main(args):
     """Main entry point of the app"""
@@ -45,12 +45,16 @@ def main(args):
     logger.info(f"Calculated average temperature of {average_temperature:.2f}")
 
     script_directory = os.path.dirname(__file__)
-    collection_file_path = os.path.join(script_directory, SAVE_PATH)
+    collection_folder_path = os.path.join(script_directory, SAVE_PATH)
+    collection_file_path = os.path.join(script_directory, SAVE_PATH, SAVE_FILE_NAME)
 
     logger.info(f"Saving to {collection_file_path}")
 
     if not os.path.isfile(collection_file_path):
         logger.info("File doesn't already exist. Creating file and writing header")
+        if not os.path.isdir(collection_folder_path):
+            os.mkdir(collection_folder_path)
+
         # If the file doesn't exist, create it and write the header
         with open(collection_file_path, mode="w", newline="\n") as file:
             writer = csv.writer(file)
