@@ -1,5 +1,8 @@
 # Temperature Dashboard
 
+[![Data extract](https://github.com/JackGilmore/TemperatureDashboard/actions/workflows/data_extract.yml/badge.svg)](https://github.com/JackGilmore/TemperatureDashboard/actions/workflows/data_extract.yml)
+[![Deploy Jekyll site to Pages](https://github.com/JackGilmore/TemperatureDashboard/actions/workflows/jekyll.yml/badge.svg)](https://github.com/JackGilmore/TemperatureDashboard/actions/workflows/jekyll.yml)
+
 ## About the project
 
 ![A screenshot of the Temperature Dashboard website showing a graph of temperatures](.github/screenshot.png)
