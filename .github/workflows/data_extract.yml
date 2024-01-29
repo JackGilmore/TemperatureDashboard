@@ -17,6 +17,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with: 
+        # Using a custom PAT with write access to the repository so it will trigger site build
+        token: ${{ secrets.REPO_COMMIT_TOKEN }}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
