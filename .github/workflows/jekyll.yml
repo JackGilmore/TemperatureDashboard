@@ -50,7 +50,7 @@ jobs:
         run: bundle install && bundle update
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl /TemperatureDashboard
+        run: bundle exec jekyll build --baseurl /
         env:
           JEKYLL_ENV: production
       - name: Upload artifact

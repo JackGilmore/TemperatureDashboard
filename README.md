@@ -103,8 +103,8 @@ Configuration file: C:/Users/Jack/source/repos/JackGilmore/TemperatureDashboard/
   Please add the following to your Gemfile to avoid polling for changes:
     gem 'wdm', '>= 0.1.0' if Gem.win_platform?
  Auto-regeneration: enabled for 'C:/Users/Jack/source/repos/JackGilmore/TemperatureDashboard/site'
-    Server address: http://127.0.0.1:4000/TemperatureDashboard/
+    Server address: http://127.0.0.1:4000
   Server running... press ctrl-c to stop.
 ```
 
-Your site should then be available from the server address which is usually `http://127.0.0.1:4000/TemperatureDashboard/`.
+Your site should then be available from the server address which is usually `http://127.0.0.1:4000`.
